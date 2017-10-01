@@ -51,7 +51,11 @@ public class PlayerController : MonoBehaviour {
             anim.Play("jump");
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
-        } else if (facingRight)
+        } else if (!grounded)
+        {
+            anim.Play("jump");
+        }
+        else if (facingRight)
         {
             anim.Play("right");
         } else if (!facingRight)
@@ -65,8 +69,8 @@ public class PlayerController : MonoBehaviour {
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        //Vector3 theScale = transform.localScale;
+        //theScale.x *= -1;
+        //transform.localScale = theScale;
     }
 }
