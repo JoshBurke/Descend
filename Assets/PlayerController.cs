@@ -16,6 +16,20 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody2D rb2d;
 
+	/*
+     * Peter's addition
+     * 
+     * The following three events help link the character to both the fuel bar and the health bar.
+     * Here is how to use them
+     * 
+     * 1. Link the Player GameObject to the Fuel Bar and Health Bar in the scene editor!
+     * 2. Call HealthChanged and FuelChanged, respectively
+     * 3. MAKE SURE you call WillBeRespawned before re-instantiating the character!
+     */
+	public event HealthChangedEventHandler HealthChanged;
+	public event FuelChangedEventHandler FuelChanged;
+	public event WillBeRespawnedEventHandler WillBeRespawned;
+
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
