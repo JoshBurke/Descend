@@ -3,24 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FuelBarController : BarController 
+public class FuelBarController : BarController
 {
-
-	// Use this for initialization
-    protected override void Awake()
+    public static FuelBarController FuelBarWithName(string name)
     {
-        base.Awake();
-
-        playerController.FuelChanged += FuelChanged;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
-
-    void FuelChanged (float newHealth) 
-    {
-        slider.value = newHealth;
+        return GameObject.Find(name).GetComponent<FuelBarController>();
     }
 }
