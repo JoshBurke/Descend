@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FuelBarController : BarController
 {
-    public static FuelBarController FuelBarWithName(string name)
+    public static FuelBarController FuelBarControllerWithName(string name)
     {
         return GameObject.Find(name).GetComponent<FuelBarController>();
     }

@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerWithStatus : MonoBehaviour
 {
-	public GameObject HealthBar;
-	public GameObject FuelBar;
+    public string NameOfHealthBar;
+	public string NameOfFuelBar;
 
 	private HealthBarController healthBarController;
 	private FuelBarController fuelBarController;
@@ -48,7 +48,7 @@ public class PlayerWithStatus : MonoBehaviour
 
 	protected virtual void Awake()
 	{
-		healthBarController = HealthBarController.HealthBarWithName(HealthBar.name);
-        fuelBarController = FuelBarController.FuelBarWithName(FuelBar.name);
+        healthBarController = HealthBarController.HealthBarControllerWithName(NameOfHealthBar);
+        fuelBarController = FuelBarController.FuelBarControllerWithName(NameOfFuelBar);
 	}
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class HealthBarController : BarController 
 {
-    public static HealthBarController HealthBarWithName(string name)
+    public static HealthBarController HealthBarControllerWithName(string name)
 	{
 		return GameObject.Find(name).GetComponent<HealthBarController>();
 	}
