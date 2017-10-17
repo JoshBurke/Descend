@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\collisionLogger.cs" />
+    <Compile Include="Assets\EnemyController.cs" />
     <Compile Include="Assets\Gravity.cs" />
     <Compile Include="Assets\PlayerController.cs" />
   </ItemGroup>
