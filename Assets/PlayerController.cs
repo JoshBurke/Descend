@@ -31,6 +31,14 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    void OnTriggerStay2D(Collider2D Other)
+    {
+        if (Other.gameObject.CompareTag("Interactable") && Input.GetKeyDown(KeyCode.E))
+        {
+            Other.GetComponent<Interactable>().function(gameObject);
+        }
+    }
+
     void FixedUpdate()
     {
         float hMove = Input.GetAxis("Horizontal");

@@ -79,8 +79,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\collisionLogger.cs" />
+    <Compile Include="Assets\ElevatorButton.cs" />
     <Compile Include="Assets\Gravity.cs" />
+    <Compile Include="Assets\InteractableCollider.cs" />
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Peter&apos;s Scripts\BarController.cs" />
+    <Compile Include="Assets\Scripts\Peter&apos;s Scripts\FuelBarController.cs" />
+    <Compile Include="Assets\Scripts\Peter&apos;s Scripts\HealthBarController.cs" />
+    <Compile Include="Assets\Scripts\Peter&apos;s Scripts\PlayerWithStatus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
