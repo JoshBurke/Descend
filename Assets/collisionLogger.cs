@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class collisionLogger : MonoBehaviour {
 
-    public BoxCollider2D box;
-    public bool enabled = false;
+    public bool enabled;
 
 	// Use this for initialization
 	void Start () {
