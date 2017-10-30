@@ -33,9 +33,6 @@ public class EnemyController : MonoBehaviour {
         {
             StartCoroutine(idleMove());
             idleMoving = true;
-        } else if (alerted)
-        {
-            Chase(player);
         }
 
         playerCheck();
@@ -44,53 +41,76 @@ public class EnemyController : MonoBehaviour {
         if(rb2d.velocity.x > 0)
         {
             facingRight = true;
+            transform.localScale = new Vector3(1, 1, 1);
         }
         
         if(rb2d.velocity.x < 0)
         {
             facingRight = false;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
 	}
+
+    void FixedUpdate()
+    {
+        if (alerted)
+        {
+            Chase(player);
+        }
+    }
 
     void playerCheck()
     {
         if (facingRight)
         {
-            transform.localScale = new Vector3(1,1,1);
             Debug.DrawRay(eye.transform.position, Vector3.right * sightDistance);
-            if(Physics2D.Raycast(eye.transform.position, Vector3.right, sightDistance, player.layer))
+            RaycastHit2D hit = Physics2D.Raycast(eye.transform.position, Vector3.right, sightDistance, 1 << LayerMask.NameToLayer("Player"));
+            if (hit)
             {
                 Debug.Log("Ray hit!");
                 alerted = true;
+                player = hit.collider.gameObject;
             } else
             {
                 Debug.Log("Ray miss.");
-                alerted = false;
             }
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
             Debug.DrawRay(eye.transform.position, Vector3.left * sightDistance);
-            if (Physics2D.Raycast(eye.transform.position, Vector3.left, sightDistance, player.layer))
+            RaycastHit2D hit = Physics2D.Raycast(eye.transform.position, Vector3.left, sightDistance, 1 << LayerMask.NameToLayer("Player"));
+            if (hit)
             {
                 Debug.Log("Ray hit!");
                 alerted = true;
+                player = hit.collider.gameObject;
             }
             else
             {
                 Debug.Log("Ray miss.");
-                alerted = false;
             }
         }
     }
 
     void Chase(GameObject player)
     {
-        Vector3 toPlayer = transform.position - player.transform.position;
-        float distance = toPlayer.magnitude;
-        toPlayer.Normalize();
-        rb2d.AddForce(toPlayer * (moveForce/10 - distance));
+        Vector3 toPlayer = player.transform.position - transform.position;
+        float direction = 0;
+        if(Mathf.Abs(toPlayer.x) < 0.1)
+        {
+            alerted = false;
+            return;
+        }
+        if(toPlayer.x < 0)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
+        }
+        rb2d.AddForce(new Vector3(direction, 0, 0) * moveForce * 0.1f);
+        Debug.Log("Chasing... Force = " + (direction*moveForce*0.1f));
     }
 
     IEnumerator idleMove()
